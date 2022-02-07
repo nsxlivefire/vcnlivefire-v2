@@ -22,7 +22,7 @@
                            "IdsRule":{
                               "action":"DETECT",
                               "ids_profiles":[
-                                 "/infra/settings/firewall/security/intrusion-services/profiles/IDS-PROFILE"
+                                 "/infra/settings/firewall/security/intrusion-services/profiles/ids-profile"
                               ],
                               "resource_type":"IdsRule",
                               "id":"1",
@@ -41,7 +41,7 @@
                               "sources_excluded":false,
                               "destinations_excluded":false,
                               "source_groups":[
-                                 "/infra/domains/default/groups/DMZ"
+                                 "/infra/domains/default/groups/dmz"
                               ],
                               "destination_groups":[
                                  "ANY"
@@ -51,7 +51,7 @@
                               ],
                               "logged":false,
                               "scope":[
-                                 "/infra/domains/default/groups/DMZ"
+                                 "/infra/domains/default/groups/dmz"
                               ],
                               "disabled":false,
                               "notes":"",
@@ -69,7 +69,7 @@
                            "IdsRule":{
                               "action":"DETECT",
                               "ids_profiles":[
-                                 "/infra/settings/firewall/security/intrusion-services/profiles/IDS-PROFILE"
+                                 "/infra/settings/firewall/security/intrusion-services/profiles/ids-profile"
                               ],
                               "resource_type":"IdsRule",
                               "id":"IDS_3",
@@ -88,7 +88,7 @@
                               "sources_excluded":false,
                               "destinations_excluded":false,
                               "source_groups":[
-                                 "/infra/domains/default/groups/INTERNAL"
+                                 "/infra/domains/default/groups/internal"
                               ],
                               "destination_groups":[
                                  "ANY"
@@ -98,7 +98,7 @@
                               ],
                               "logged":false,
                               "scope":[
-                                 "/infra/domains/default/groups/INTERNAL"
+                                 "/infra/domains/default/groups/internal"
                               ],
                               "disabled":false,
                               "notes":"",
@@ -116,7 +116,7 @@
                            "IdsRule":{
                               "action":"DETECT",
                               "ids_profiles":[
-                                 "/infra/settings/firewall/security/intrusion-services/profiles/IDS-PROFILE"
+                                 "/infra/settings/firewall/security/intrusion-services/profiles/ids-profile"
                               ],
                               "resource_type":"IdsRule",
                               "id":"New_Rule",
@@ -138,14 +138,14 @@
                                  "ANY"
                               ],
                               "destination_groups":[
-                                 "/infra/domains/default/groups/DMZ"
+                                 "/infra/domains/default/groups/dmz"
                               ],
                               "services":[
                                  "ANY"
                               ],
                               "logged":false,
                               "scope":[
-                                 "/infra/domains/default/groups/DMZ"
+                                 "/infra/domains/default/groups/dmz"
                               ],
                               "disabled":false,
                               "notes":"",
