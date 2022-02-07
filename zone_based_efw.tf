@@ -20,16 +20,16 @@ provider "nsxt" {
 
 
 data "nsxt_policy_tier1_gateway" "t1-internal" {
-  display_name = "T1-INTERNAL"
+  display_name = "t1-internal"
 }
 
 data "nsxt_policy_group" "mgmt" {
-  display_name = "MGMT"
+  display_name = "mgmt"
 }
 
 resource "nsxt_policy_group" "dmz" {
-  nsx_id       = "DMZ"
-  display_name = "DMZ"
+  nsx_id       = "dmz"
+  display_name = "dmz"
   criteria {
     condition {
       member_type = "Segment"
@@ -41,8 +41,8 @@ resource "nsxt_policy_group" "dmz" {
 }
 
 resource "nsxt_policy_group" "internal" {
-  nsx_id       = "INTERNAL"
-  display_name = "INTERNAL"
+  nsx_id       = "internal"
+  display_name = "internal"
   criteria {
     condition {
       member_type = "Segment"
