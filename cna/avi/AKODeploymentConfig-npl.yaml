@@ -1,0 +1,31 @@
+apiVersion: networking.tkg.tanzu.vmware.com/v1alpha1
+kind: AKODeploymentConfig
+metadata:
+  name: npl-enabled
+spec:
+  adminCredentialRef:
+    name: avi-controller-credentials
+    namespace: tkg-system-networking
+  certificateAuthorityRef:
+    name: avi-controller-ca
+    namespace: tkg-system-networking
+  cloudName: vcsa-01a
+  clusterSelector:
+    matchLabels:
+      npl-enabled: "true"
+  controller: avi-01a.corp.local
+  dataNetwork:
+    cidr: 172.16.110.0/24
+    name: ov-tkg-vip
+  extraConfigs:
+    cniPlugin: antrea # required
+    disableStaticRouteSync: false
+    ingress:
+      disableIngressClass: false
+      nodeNetworkList:
+        - cidrs:
+          - 172.16.80.0/24
+          networkName: ov-tkg
+      serviceType: NodePortLocal # required
+      shardVSSize: MEDIUM
+  serviceEngineGroup: Default-Group
