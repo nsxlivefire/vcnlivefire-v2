@@ -117,11 +117,13 @@ resource "nsxt_policy_security_policy" "stretched-dfw" {
     services           = [data.nsxt_policy_service.MySQL.path]
     destination_groups = [nsxt_policy_group.g-db-stretched.path]
     logged             = true
+    disabled           = true
        }
 
   rule {
     display_name     = "anyany"
     action           = "DROP"
+    disabled           = true
        }
 }
 
