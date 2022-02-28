@@ -1,0 +1,98 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: antrea-interworking
+  name: antrea-interworking-deregister
+rules:
+  - apiGroups:
+      - clusterinformation.antrea-interworking.tanzu.vmware.com
+    resources:
+      - antreaccpadapterinfos
+      - antreampadapterinfos
+    verbs:
+      - get
+      - delete
+      - deletecollection
+  - apiGroups:
+      - crd.antrea.io
+    resources:
+      - traceflows
+    verbs:
+      - get
+      - delete
+      - deletecollection
+  - apiGroups:
+      - crd.antrea.io
+    resources:
+      - clusternetworkpolicies
+      - networkpolicies
+      - tiers
+      - clustergroups
+    verbs:
+      - get
+      - delete
+      - deletecollection
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app: antrea-interworking
+  name: antrea-interworking-deregister
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: antrea-interworking-deregister
+subjects:
+  - kind: ServiceAccount
+    name: register
+    namespace: vmware-system-antrea
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: deregister
+  labels:
+    app: antrea-interworking
+    component: register
+  namespace: vmware-system-antrea
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+        - name: deregister
+          image: vmware.io/antrea/interworking:0.2.0
+          command: ["/usr/local/bin/cluster-registry"]
+          args: ["deregister"]
+          volumeMounts:
+            - mountPath: /etc/antrea
+              name: projected-configs
+              readOnly: true
+      restartPolicy: OnFailure
+      serviceAccountName: register
+      hostNetwork: true
+      volumes:
+        - name: projected-configs
+          projected:
+            sources:
+              - configMap:
+                  name: bootstrap-config
+                  items:
+                    - key: bootstrap.conf
+                      path: bootstrap.conf
+              - configMap:
+                  name: cluster-id
+                  items:
+                    - key: cluster-id.conf
+                      path: cluster-id.conf
+              - secret:
+                  name: nsx-cert
+                  items:
+                    - key: tls.crt
+                      path: nsx-cert/tls.crt
+                    - key: tls.key
+                      path: nsx-cert/tls.key
+  backoffLimit: 3
