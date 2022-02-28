@@ -41,13 +41,15 @@ resource "nsxt_policy_security_policy" "vdi" {
     logged             = true
 	services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path]
     log_label          = "ex-employees"
+	scope              = [nsxt_policy_group.web.path,nsxt_policy_group.lb.path]
   }
 
   rule {
     display_name       = "permit rule"
     action             = "ALLOW"
     logged             = true
-    services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path ]
+    services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path]
+	scope              = [nsxt_policy_group.web.path,nsxt_policy_group.lb.path]
   }
 
 }
