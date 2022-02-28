@@ -41,7 +41,7 @@ resource "nsxt_policy_security_policy" "vdi" {
     logged             = true
 	services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path]
     log_label          = "ex-employees"
-	scope              = [nsxt_policy_group.web.path,nsxt_policy_group.lb.path]
+	scope              = [data.nsxt_policy_group.web.path,data.nsxt_policy_group.lb.path]
   }
 
   rule {
@@ -49,7 +49,7 @@ resource "nsxt_policy_security_policy" "vdi" {
     action             = "ALLOW"
     logged             = true
     services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path]
-	scope              = [nsxt_policy_group.web.path,nsxt_policy_group.lb.path]
+	scope              = [data.nsxt_policy_group.web.path,data.nsxt_policy_group.lb.path]
   }
 
 }
