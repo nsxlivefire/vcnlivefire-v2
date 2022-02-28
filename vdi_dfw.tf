@@ -36,7 +36,7 @@ resource "nsxt_policy_security_policy" "vdi" {
   rule {
     display_name       = "deny rule"
     source_groups      = [nsxt_policy_group.ex-employees.path]
-    action             = "drop"
+    action             = "DROP"
     logged             = true
 	services           = [data.nsxt_policy_service.http.path, data.nsxt_policy_service.https.path]
     log_label          = "ex-employees"
