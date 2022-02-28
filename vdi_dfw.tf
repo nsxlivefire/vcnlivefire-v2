@@ -25,8 +25,8 @@ data "nsxt_policy_group" "web" {
   display_name = "web"
 }
 
-resource "nsxt_policy_security_policy" "vdi" {
-  display_name = "vdi policy"
+resource "nsxt_policy_security_policy" "idfw" {
+  display_name = "idfw"
   description  = "Control VDI traffic"
   category     = "Application"
   locked       = false
