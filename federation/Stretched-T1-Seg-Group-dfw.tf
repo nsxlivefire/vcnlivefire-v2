@@ -56,6 +56,7 @@ resource "nsxt_policy_segment" "ov-web-stretched" {
 resource "nsxt_policy_group" "g-web-stretched" {
   display_name = "g-web-stretched"
   description  = "Stretched Global web group"
+  nsx_id = "g-web-stretched"
 
   criteria {
    condition {
@@ -69,6 +70,7 @@ resource "nsxt_policy_group" "g-web-stretched" {
 resource "nsxt_policy_group" "g-db-stretched" {
   display_name = "g-db-stretched"
   description  = "Stretched Global db group"
+  nsx_id = "g-db-stretched"
 
   criteria {
    condition {
