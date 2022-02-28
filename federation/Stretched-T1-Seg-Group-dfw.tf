@@ -39,7 +39,7 @@ resource "nsxt_policy_segment" "ov-db-stretched" {
   description         = "Strectched DB Segment"
   connectivity_path   = nsxt_policy_tier1_gateway.t1-stretched.path
   subnet {
-   cidr        = "172.16.10.1/24"
+   cidr        = "172.16.20.1/24"
          }
   }
 resource "nsxt_policy_segment" "ov-web-stretched" {
@@ -47,7 +47,7 @@ resource "nsxt_policy_segment" "ov-web-stretched" {
   description         = "Strectched Web Segment"
   connectivity_path   = nsxt_policy_tier1_gateway.t1-stretched.path
   subnet {
-   cidr        = "172.16.20.1/24"
+   cidr        = "172.16.10.1/24"
          }
   }
 
