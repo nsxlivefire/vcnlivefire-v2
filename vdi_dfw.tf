@@ -27,12 +27,11 @@ data "nsxt_policy_group" "web" {
 
 resource "nsxt_policy_security_policy" "vdi" {
   display_name = "vdi policy"
-  description  = "Control VDi traffic"
-  category     = "Environment"
+  description  = "Control VDI traffic"
+  category     = "Application"
   locked       = false
   stateful     = true
   tcp_strict   = true
-  scope        = [nsxt_policy_group.VDI.path]
 
   rule {
     display_name       = "deny rule"
