@@ -3,16 +3,17 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    app.kubernetes.io/name: guestbook
-    app.kubernetes.io/component: frontend
+    app: guestbook
+    tier: frontend
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
   type: LoadBalancer
   loadBalancerIP: 172.16.110.50
   ports:
+    # the port that this service should serve on
   - port: 80
   selector:
-    app.kubernetes.io/name: guestbook
-    app.kubernetes.io/component: frontend
-
+    app: guestbook
+    tier: frontend
