@@ -1,22 +1,7 @@
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hackazon
-spec:
-  type: LoadBalancer
-  selector:
-    app: hackazon
-  ports:
-  - name: dvwa
-    port: 80
-    targetPort: 80
-    nodePort: 30009
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hackazon-deployment
+  name: hackazon
 spec:
   selector:
     matchLabels:
@@ -29,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hackazon
-        image: harbor-01a.corp.local/vulnerableapps/hackazon:latest
+        image: registry.lab.livefire.dev/vcnlivefire/vulnerableapps/hackazon
         ports:
         - containerPort: 80
 
@@ -48,24 +33,27 @@ spec:
     name: http
   selector:
     app: hackazon
-  type: NodePort
+  type: ClusterIP
 
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hackazon-ingress
-  annotations:
-   kubernetes.io/ingress.class: avi
+  name: hackazon-https-ingress
 spec:
+  ingressClassName: avi-lb # required, make sure the ingress class is not None
+  tls:
+  - hosts:
+    - hackazon.tkg.corp.local
+    secretName: tkg-tls
   rules:
   - host: hackazon.tkg.corp.local
     http:
       paths:
-      - path: "/"
+      - path:  "/"
         pathType: Prefix
         backend:
-         service:
-          name: hackazon-svc
-          port:
-           number: 80
+           service:
+             name: hackazon-svc
+             port:
+               number: 80
