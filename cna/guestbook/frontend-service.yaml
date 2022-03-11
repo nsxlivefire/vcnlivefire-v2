@@ -14,6 +14,7 @@ spec:
   ports:
     # the port that this service should serve on
   - port: 80
+    nodePort: 30536
   selector:
     app: guestbook
     tier: frontend
