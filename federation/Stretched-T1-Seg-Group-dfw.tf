@@ -41,6 +41,10 @@ resource "nsxt_policy_segment" "ov-db-stretched" {
   subnet {
    cidr        = "172.16.20.1/24"
          }
+  tag {
+    scope = "zone"
+    tag   = "internal"
+      }
   }
 resource "nsxt_policy_segment" "ov-web-stretched" {
   display_name        = "ov-web-stretched"
@@ -49,6 +53,10 @@ resource "nsxt_policy_segment" "ov-web-stretched" {
   subnet {
    cidr        = "172.16.10.1/24"
          }
+  tag {
+    scope = "zone"
+    tag   = "internal"
+      }
   }
 
 #Create Global Group for 2-tier webapp for grouing Web and DB VMs in seperate groups
