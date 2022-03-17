@@ -22,6 +22,11 @@ spec:
       containers:
       - name: couchdb
         image: registry.lab.livefire.dev/vcnlivefire/vulnapps/couchdb
+        env:
+        - name: COUCHDB_USER
+          value: admin
+        - name: COUCHDB_PASSWORD
+          value: VMware1!
         ports:
         - containerPort: 5984
 

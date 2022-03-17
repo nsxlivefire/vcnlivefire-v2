@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: drupal
-        image: registry.lab.livefire.dev/vcnlivefire/vulnapps/drupal:8.5.0
+        image: registry.lab.livefire.dev/vcnlivefire/vulnapps/drupal:8.5.1
         ports:
         - containerPort: 80
       affinity:
@@ -34,25 +34,3 @@ spec:
                       values:
                       - couchdb
                   topologyKey: "kubernetes.io/hostname"
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: drupal
-  namespace: vulnapps-dev
-  labels:
-    app.kubernetes.io/name: drupal
-spec:
-  type: LoadBalancer
-  #  loadBalancerIP: 172.16.110.51
-  ports:
-  - port: 80
-  selector:
-    app: drupal
-
-
-
-
-
-
