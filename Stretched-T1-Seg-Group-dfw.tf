@@ -109,7 +109,6 @@ resource "nsxt_policy_security_policy" "stretched-dfw" {
     action             = "ALLOW"
     services           = [data.nsxt_policy_service.HTTPS.path, data.nsxt_policy_service.ICMPv4-ALL.path ]
     logged             = true
-    disabled           = true
     destination_groups = [nsxt_policy_group.g-web-stretched.path]
        }
 
