@@ -105,7 +105,7 @@ resource "nsxt_policy_security_policy" "stretched-dfw" {
   scope        = [nsxt_policy_group.g-web-stretched.path, nsxt_policy_group.g-db-stretched.path ]
 
   rule {
-    display_name       = "any2web"
+    display_name       = "Allow any to web"
     action             = "ALLOW"
     services           = [data.nsxt_policy_service.HTTPS.path, data.nsxt_policy_service.ICMPv4-ALL.path ]
     logged             = true
@@ -113,11 +113,18 @@ resource "nsxt_policy_security_policy" "stretched-dfw" {
        }
 
   rule {
-    display_name       = "web2db"
+    display_name       = "Allow web to db"
     action             = "ALLOW"
     source_groups      = [nsxt_policy_group.g-web-stretched.path]
     services           = [data.nsxt_policy_service.MySQL.path]
     destination_groups = [nsxt_policy_group.g-db-stretched.path]
+    logged             = true
+       }
+
+  rule {
+    display_name       = "Allow webapp out"
+    action             = "ALLOW"
+    source_groups      = [nsxt_policy_group.g-web-stretched.path,nsxt_policy_group.g-db-stretched.path]
     logged             = true
        }
 
