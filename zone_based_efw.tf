@@ -3,6 +3,7 @@ terraform {
     nsxt = {
       source = "vmware/nsxt"
       version = "3.2.5"
+      configuration_aliases = [ nsxt.alternate ]
     }
   }
 }

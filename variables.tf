@@ -24,7 +24,7 @@ variable "vs_name" {
 }
 variable "pool_name" {
   type    = string
-  default = "webapp-lbp-siteb"
+  default = "webapp-vs-siteb-pool"
 }
 variable "lb_algorithm" {
   type    = string
