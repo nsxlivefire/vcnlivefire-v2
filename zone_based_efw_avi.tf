@@ -126,8 +126,8 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
 
   rule {
     display_name       = "Allow traffic from NSX-ALB SE to Pool Servers"
-    source_groups      = [data.nsxt_policy_group.alb-a-ServiceEngines.path]
-    destination_groups = [data.nsxt_policy_group.web.path]
+    source_groups      = [data.nsxt_policy_group.alb-a-ServiceEngines.path,data.nsxt_policy_group.web.path]
+    destination_groups = [data.nsxt_policy_group.web.path,data.nsxt_policy_group.alb-a-ServiceEngines.path]
     action             = "ALLOW"
     logged             = false
     scope              = [data.nsxt_policy_tier1_gateway.t1-internal.path]
