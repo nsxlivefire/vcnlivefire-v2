@@ -1,25 +1,3 @@
-terraform {
-  required_providers {
-    nsxt = {
-      source = "vmware/nsxt"
-      version = "3.2.5"
-      configuration_aliases = [ nsxt.alternate ]
-    }
-  }
-}
-
-provider "nsxt" {
-  host                  = "192.168.110.15"
-  username              = "admin"
-  password              = "VMware1!VMware1!"
-  allow_unverified_ssl  = true
-  max_retries           = 10
-  retry_min_delay       = 500
-  retry_max_delay       = 5000
-  retry_on_status_codes = [429]
-}
-
-
 data "nsxt_policy_tier1_gateway" "t1-internal" {
   display_name = "t1-internal"
 }

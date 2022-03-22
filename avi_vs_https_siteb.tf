@@ -1,20 +1,3 @@
-## provider setup
-terraform {
-	required_providers {
-		avi = {
-			source  = "vmware/avi"
-			version = "21.1.3"
-		}
-	}
-}
-provider "avi" {
-	avi_controller		= var.avi_controller
-	avi_username		= var.avi_username
-	avi_password		= var.avi_password
-	avi_version		= var.avi_version
-	avi_tenant		= "admin"
-}
-
 ## avi data objects
 data "avi_tenant" "admin" {
 	name	= "admin"
