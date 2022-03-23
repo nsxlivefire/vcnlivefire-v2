@@ -23,7 +23,7 @@ resource "nsxt_policy_tier1_gateway" "t1-stretched" {
   enable_firewall           = "false"
   enable_standby_relocation = "false"
   tier0_path                = data.nsxt_policy_tier0_gateway.t0-stretched.path
-  route_advertisement_types = ["TIER1_STATIC_ROUTES"]
+  route_advertisement_types = ["TIER1_CONNECTED"]
   pool_allocation           = "ROUTING"
   }
 
