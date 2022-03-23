@@ -48,6 +48,16 @@ resource "nsxt_policy_group" "internal" {
   }
 }
 
+resource "nsxt_policy_group" "dev" {
+  nsx_id       = "dev"
+  display_name = "dev"
+  criteria {
+    ipaddress_expression {
+      ip_addresses = ["172.16.60.11/32"]
+    }
+  }
+}
+
 resource "nsxt_policy_service" "couchdb" {
   display_name = "couchdb"
 
@@ -78,6 +88,7 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
   rule {
     display_name       = "Allow DMZ"
     source_groups      = [nsxt_policy_group.dmz.path]
+    destination_groups = [nsxt_policy_group.dev.path]
     services           = [nsxt_policy_service.couchdb.path]
     action             = "ALLOW"
     logged             = true
@@ -104,8 +115,8 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
 
   rule {
     display_name       = "Allow traffic from NSX-ALB SE to Pool Servers"
-    source_groups      = [data.nsxt_policy_group.alb-a-ServiceEngines.path,data.nsxt_policy_group.web.path]
-    destination_groups = [data.nsxt_policy_group.web.path,data.nsxt_policy_group.alb-a-ServiceEngines.path]
+    source_groups      = [data.nsxt_policy_group.alb-a-ServiceEngines.path]
+    destination_groups = [data.nsxt_policy_group.web.path]
     action             = "ALLOW"
     logged             = false
     scope              = [data.nsxt_policy_tier1_gateway.t1-internal.path]
