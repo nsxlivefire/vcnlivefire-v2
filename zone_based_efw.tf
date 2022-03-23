@@ -32,6 +32,16 @@ resource "nsxt_policy_group" "internal" {
   }
 }
 
+resource "nsxt_policy_group" "dev" {
+  nsx_id       = "dev"
+  display_name = "dev"
+  criteria {
+    ipaddress_expression {
+      ip_addresses = ["172.16.60.11/32"]
+    }
+  }
+}
+
 resource "nsxt_policy_service" "couchdb" {
   display_name = "couchdb"
 
@@ -62,6 +72,7 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
   rule {
     display_name       = "Allow DMZ"
     source_groups      = [nsxt_policy_group.dmz.path]
+    destination_groups = [nsxt_policy_group.dev.path]
     services           = [nsxt_policy_service.couchdb.path]
     action             = "ALLOW"
     logged             = true

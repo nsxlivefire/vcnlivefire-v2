@@ -1,14 +1,3 @@
-provider "nsxt" {
-  host           = "192.168.110.16"
-  username       = "admin"
-  password       = "VMware1!VMware1!"
-  global_manager = true
-  alias = "global_manager"
-  allow_unverified_ssl  = true
-  max_retries           = 10
-  retry_min_delay       = 500
-  retry_max_delay       = 5000
-}
 data "nsxt_policy_tier0_gateway" "t0-stretched" {
   provider = nsxt.global_manager
   display_name = "t0-stretched"
