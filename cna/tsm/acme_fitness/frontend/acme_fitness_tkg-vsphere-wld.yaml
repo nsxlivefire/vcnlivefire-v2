@@ -35,7 +35,8 @@ spec:
     spec:
       containers:
         - name: cart-redis
-          image: redis:5.0.3-alpine
+#         image: redis:5.0.3-alpine
+          image: registry.lab.livefire.dev/vcnlivefire/redis:5.0.3-alpine
           command:
             - "redis-server"
           imagePullPolicy: Always
@@ -111,7 +112,8 @@ spec:
       - name: cart-data
         emptyDir: {}
       containers:
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-cart:1.0.0
+#     - image: gcr.io/vmwarecloudadvocacy/acmeshop-cart:1.0.0
+      - image: registry.lab.livefire.dev/vcnlivefire/acme/acmeshop-cart:1.0.0
         name: cart
         env:
         - name: REDIS_HOST
@@ -178,7 +180,8 @@ spec:
     spec:
       containers:
 #     - image: registry.lab.livefire.dev/vcnlivefire/acme/shopping-vsphere:v0.2
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-front-end:rel1
+#     - image: gcr.io/vmwarecloudadvocacy/acmeshop-front-end:rel1
+      - image: registry.lab.livefire.dev/vcnlivefire/acme/acmeshop-front-end:rel1
         name: shopping
         env:
         - name: FRONTEND_PORT
@@ -186,7 +189,7 @@ spec:
         - name: USERS_HOST
           value: 'users'
         - name: CATALOG_HOST
-          value: 'catalog.acme.livefire.dev'
+          value: 'catalog.acme.vcnlivefire.lab'
         - name: ORDER_HOST
           value: 'order'
         - name: CART_HOST
@@ -240,7 +243,8 @@ spec:
     spec:
       containers:
         - name: order-mongo
-          image: mongo:4
+#         image: mongo:4
+          image: registry.lab.livefire.dev/vcnlivefire/mongo:4
           resources:
             {}
           ports:
@@ -306,7 +310,8 @@ spec:
       - name: order-data
         emptyDir: {}
       containers:
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-order:1.0.1
+#     - image: gcr.io/vmwarecloudadvocacy/acmeshop-order:1.0.1
+      - image: registry.lab.livefire.dev/vcnlivefire/acme/acmeshop-order:1.0.1
         name: order
         env:
         - name: ORDER_DB_HOST
@@ -378,7 +383,8 @@ spec:
         service: payment
     spec:
       containers:
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-payment:1.0.0
+#     - image: gcr.io/vmwarecloudadvocacy/acmeshop-payment:1.0.0
+      - image: registry.lab.livefire.dev/vcnlivefire/acme/acmeshop-payment:1.0.0
         name: payment
         env:
         - name: PAYMENT_PORT
@@ -439,7 +445,8 @@ spec:
     spec:
       containers:
         - name: users-mongo
-          image: mongo:4
+#         image: mongo:4
+          image: registry.lab.livefire.dev/vcnlivefire/mongo:4
           resources:
             {}
           ports:
@@ -512,7 +519,8 @@ spec:
       - name: users-data
         emptyDir: {}
       containers:
-      - image: gcr.io/vmwarecloudadvocacy/acmeshop-user:1.0.0
+#     - image: gcr.io/vmwarecloudadvocacy/acmeshop-user:1.0.0
+      - image: registry.lab.livefire.dev/vcnlivefire/acme/acmeshop-user:1.0.0
         name: users
         env:
         - name: USERS_DB_HOST
