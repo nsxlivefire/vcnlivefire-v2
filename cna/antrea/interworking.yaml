@@ -376,7 +376,8 @@ spec:
     spec:
       containers:
         - name: register
-          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          #          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          image: registry.lab.livefire.dev/vcnlivefire/antreainterworking/interworking-ubuntu:0.2.0
           command: ["/usr/local/bin/cluster-registry"]
           args: ["register"]
           volumeMounts:
@@ -448,7 +449,8 @@ spec:
             - --log_file_max_size=100
             - --log_file_max_num=4
             - --v=4
-          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          #image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          image: registry.lab.livefire.dev/vcnlivefire/antreainterworking/interworking-ubuntu:0.2.0
           imagePullPolicy: IfNotPresent
           env:
             - name: POD_NAME
@@ -473,7 +475,8 @@ spec:
             - --log_file_max_size=100
             - --log_file_max_num=4
             - --v=4
-          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          #image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          image: registry.lab.livefire.dev/vcnlivefire/antreainterworking/interworking-ubuntu:0.2.0
           imagePullPolicy: IfNotPresent
           env:
             - name: POD_NAME
@@ -539,7 +542,8 @@ spec:
             - /usr/local/bin/election-watcher
           args:
             - --cmd=tn-proxy-init.sh
-          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          # image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          image: registry.lab.livefire.dev/vcnlivefire/antreainterworking/interworking-ubuntu:0.2.0
           imagePullPolicy: IfNotPresent
           env:
             - name: POD_NAME
@@ -571,7 +575,8 @@ spec:
             - --log_file_max_size=100
             - --log_file_max_num=4
             - --v=4
-          image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          #image: projects.registry.vmware.com/antreainterworking/interworking-ubuntu:0.2.0
+          image: registry.lab.livefire.dev/vcnlivefire/antreainterworking/interworking-ubuntu:0.2.0
           imagePullPolicy: IfNotPresent
           env:
             - name: POD_NAME
