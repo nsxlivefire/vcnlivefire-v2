@@ -22,6 +22,10 @@ variable "vs_name" {
   type    = string
   default = "webapp-vs-siteb"
 }
+variable "dns_vs_name" {
+  type    = string
+  default = "dns-s-siteb"
+}
 variable "pool_name" {
   type    = string
   default = "webapp-vs-siteb-pool"
@@ -49,6 +53,10 @@ variable "server2_port" {
 variable "vs_address" {
   type    = string
   default = "172.26.100.10"
+}
+variable "dns_vs_address" {
+  type    = string
+  default = "172.26.100.2"
 }
 variable "nsxt_cloud_lr1" {
   type    = string
