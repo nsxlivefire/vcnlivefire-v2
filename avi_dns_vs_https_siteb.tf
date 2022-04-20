@@ -35,4 +35,20 @@ resource "avi_virtualservice" "dns_vs" {
                  port           = 53
         }
         enabled			= true
+        analytics_policy {
+          all_headers           = true
+          significant_log_throttle = 0
+          udf_log_throttle         = 0
+
+          full_client_logs {
+            duration = 0
+            enabled  = true
+            throttle = 0
+          }
+
+         metrics_realtime_update {
+         duration = 0
+         enabled  = true
+         }
+       }
 }
