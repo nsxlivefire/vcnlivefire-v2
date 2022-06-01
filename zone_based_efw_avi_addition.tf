@@ -18,9 +18,9 @@ data "nsxt_policy_group" "alb-a-ServiceEngines" {
   display_name = "alb-a-ServiceEngines"
 }
 
-#data "nsxt_policy_group" "web" {
-#  display_name = "web"
-#}
+data "nsxt_policy_group" "web_duplicate" {
+  display_name = "web"
+}
 
 resource "nsxt_policy_group" "dmz" {
   nsx_id       = "dmz"
@@ -116,7 +116,7 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
   rule {
     display_name       = "Allow traffic from NSX-ALB SE to Pool Servers"
     source_groups      = [data.nsxt_policy_group.alb-a-ServiceEngines.path]
-    destination_groups = [data.nsxt_policy_group.web.path]
+    destination_groups = [data.nsxt_policy_group.web_duplicate.path]
     action             = "ALLOW"
     logged             = false
     scope              = [data.nsxt_policy_tier1_gateway.t1-internal.path]
@@ -127,6 +127,4 @@ resource "nsxt_policy_gateway_policy" "InternalZone" {
     logged             = true
     scope              = [data.nsxt_policy_tier1_gateway.t1-internal.path]
   }
-
-
 }
