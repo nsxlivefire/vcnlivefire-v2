@@ -29,6 +29,8 @@ spec:
           value: VMware1!
         ports:
         - containerPort: 5984
+      nodeSelector:
+        kubernetes.io/hostname: k8s-dev-node-02
 
 ---
 apiVersion: v1

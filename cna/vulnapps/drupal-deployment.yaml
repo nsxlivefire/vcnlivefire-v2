@@ -24,13 +24,5 @@ spec:
         image: registry.lab.livefire.dev/vcnlivefire/vulnapps/drupal:8.5.1
         ports:
         - containerPort: 80
-      affinity:
-        podAntiAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                - labelSelector:
-                    matchExpressions:
-                    - key: app
-                      operator: In
-                      values:
-                      - couchdb
-                  topologyKey: "kubernetes.io/hostname"
+      nodeSelector:
+        kubernetes.io/hostname: k8s-dev-node-01
